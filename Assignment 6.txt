@@ -1,0 +1,7 @@
+Assignment 6
+
+Def- a medical record system is a software application used to manage medical records including patient information medical history and treatment plan .
+hash table can be used as a data structure to efficiently store and retrieve medical records.
+
+Assignment 7
+A student record system is software application used to manage student records including student info.10th .10th result. Hash table can be used  as a data structure to efficiently store or retrieve student records
