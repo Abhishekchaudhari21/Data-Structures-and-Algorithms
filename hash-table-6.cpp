@@ -17,6 +17,7 @@ class medicalRecords{
     void accept();
     void search();
     void modify();
+    void deleteRecord();
 }h[50];
 
 void medicalRecords::Table(){
@@ -111,14 +112,39 @@ void medicalRecords::modify(){
     } while (ch != 0);
 }
 
+void medicalRecords::deleteRecord() {
+    int id, ch;
+    bool isFound = false;
+    do {
+        cout << "\nEnter patient ID to delete: ";
+        cin >> id;
+        for (int i = 0; i < 10; i++) {
+            if (h[i].ID == id) {
+                isFound = true;
+                cout << "\nRecord found at location " << i << ": ID = " << h[i].ID << ", Name = " << h[i].Name << endl;
+                h[i].ID = -1;  // Reset ID to indicate deletion
+                h[i].Name = ""; // Clear name
+                cout << "Record deleted successfully!" << endl;
+                break;
+            }
+        }
+        if (!isFound) {
+            cout << "Record not found!" << endl;
+        }
+        cout << "\nDo you want to delete another record? (Yes-1/No-0): ";
+        cin >> ch;
+    } while (ch != 0);
+}
+
+
 int main(){
     int choice;
     cout << "\n\tMedical Record System\n";
     medicalRecords m;
     m.Table();
-    do
+ while (choice != 0)  // Loop until user chooses to exit
     {
-        cout << "\n1. Add Medical Records\n2. Display Medical Records\n3. Search Medical Records\n4. Modify Medical Records\n0. Exit\nEnter your choice: ";
+        cout << "\n1. Add Medical Records\n2. Display Medical Records\n3. Search Medical Records\n4. Modify Medical Records\n5. Delete Medical Records\n0. Exit\nEnter your choice: ";
         cin >> choice;
         switch (choice) {
             case 1:
@@ -133,14 +159,16 @@ int main(){
             case 4:
                 m.modify();
                 break;
+            case 5:
+                m.deleteRecord();
+                break;
             case 0:
                 cout << "Exiting the program." << endl;
                 break;
             default:
                 cout << "Invalid choice! Please try again." << endl;
         }
-    cout << "\nDo you want to continue? (Yes-1/No-0): ";
-        cin >> choice;
-    } while (choice != 0);
+    }
+
     return 0;
 }
